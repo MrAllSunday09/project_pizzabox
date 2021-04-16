@@ -64,10 +64,10 @@ for a custom pizza
 
 The application is centered around the interaction of 4 main objects:
 
-    + Customer
-    + Order
-    + Pizza
-    + Store
++ Customer
++ Order
++ Pizza
++ Store
 
 Store
 
