@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System;
 using PizzaBox.Domain.Abstracts;
-using PizzaBox.Domain.Models;
+using PizzaBox.Domain.Models.Stores;
 
 namespace PizzaBox.Client
 {

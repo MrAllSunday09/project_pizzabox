@@ -23,7 +23,7 @@ namespace PizzaBox.Testing.Tests
       var sut = new Dominos();
 
       // act
-      var actual = sut.Name;
+      var actual = sut.name;
 
       // assert
       Assert.True(actual == "Dominos");
@@ -38,7 +38,7 @@ namespace PizzaBox.Testing.Tests
     {
       var sut = new PizzaHut();
 
-      Assert.True(sut.Name.Equals("PizzaHut"));
+      Assert.True(sut.name.Equals("PizzaHut"));
     }
 
     /// <summary>
