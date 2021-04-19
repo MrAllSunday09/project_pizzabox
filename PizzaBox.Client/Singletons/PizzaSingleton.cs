@@ -13,7 +13,7 @@ namespace PizzaBox.Client.Singletons
     private static PizzaSingleton _instance;
     private const string _path = @"data/pizzas.xml";
 
-    public List<APizza> Pizzas { get; set; }
+    public List<APizza> Pizza { get; set; }
     public static PizzaSingleton Instance
     {
       get
@@ -32,7 +32,7 @@ namespace PizzaBox.Client.Singletons
     /// </summary>
     private PizzaSingleton()
     {
-      Pizzas = _fileRepository.ReadFromFile<List<APizza>>(_path);
+      Pizza = _fileRepository.ReadFromFile<List<APizza>>(_path);
     }
   }
 }

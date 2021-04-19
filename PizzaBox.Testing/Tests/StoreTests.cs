@@ -9,24 +9,24 @@ namespace PizzaBox.Testing.Tests
   {
     public static IEnumerable<object[]> values = new List<object[]>()
     {
-      new object[] { new ChicagoStore() },
-      new object[] { new NewYorkStore() }
+      new object[] { new Dominos() },
+      new object[] { new PizzaHut() }
     };
 
     /// <summary>
     /// 
     /// </summary>
     [Fact]
-    public void Test_ChicagoStore()
+    public void Test_Dominos()
     {
       // arrange
-      var sut = new ChicagoStore();
+      var sut = new Dominos();
 
       // act
       var actual = sut.Name;
 
       // assert
-      Assert.True(actual == "ChicagoStore");
+      Assert.True(actual == "Dominos");
       Assert.True(sut.ToString() == actual);
     }
 
@@ -36,9 +36,9 @@ namespace PizzaBox.Testing.Tests
     [Fact]
     public void Test_NewYorkStore()
     {
-      var sut = new NewYorkStore();
+      var sut = new PizzaHut();
 
-      Assert.True(sut.Name.Equals("NewYorkStore"));
+      Assert.True(sut.Name.Equals("PizzaHut"));
     }
 
     /// <summary>
@@ -59,8 +59,8 @@ namespace PizzaBox.Testing.Tests
     /// <param name="storeName"></param>
     /// <param name="x"></param>
     [Theory]
-    [InlineData("ChicagoStore", 1)]
-    [InlineData("NewYorkStore", 1)]
+    [InlineData("Dominos", 1)]
+    [InlineData("PizzaHut", 1)]
     public void Test_StoreNameSimple(string storeName, int x)
     {
       Assert.NotNull(storeName);
