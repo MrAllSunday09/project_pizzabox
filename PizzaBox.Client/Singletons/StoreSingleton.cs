@@ -1,33 +1,41 @@
 using System.Collections.Generic;
 using PizzaBox.Domain.Abstracts;
-using PizzaBox.Domain.Models.Stores;
+using PizzaBox.Storing.Repositories;
 
 namespace PizzaBox.Client.Singletons
 {
-    public class StoreSingleton
+  /// <summary>
+  /// 
+  /// </summary>
+  public class StoreSingleton
+  {
+    private const string _path = @"data/stores.xml";
+    private readonly FileRepository _fileRepository = new FileRepository();
+    private static StoreSingleton _instance;
+
+    public List<AStore> Stores { get; }
+    public static StoreSingleton Instance
     {
-        public static List<AStore> stores = new List<AStore>
+      get
+      {
+        if (_instance == null)
         {
-            new ChicagoStore(),
-            new NewYorkStore()
-        };
-
-        private static readonly StoreSingleton _instance;
-        public static StoreSingleton Instance
-        {
-            get
-            {
-                if (_instance == null)
-                {
-                    return new StoreSingleton();
-                }
-            return _instance;
-            }
+          _instance = new StoreSingleton();
         }
 
-        private StoreSingleton()
-        {
-            stores = new List<AStore>();
-        }
+        return _instance;
+      }
     }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    private StoreSingleton()
+    {
+      if (Stores == null)
+      {
+        Stores = _fileRepository.ReadFromFile<List<AStore>>(_path);
+      }
+    }
+  }
 }

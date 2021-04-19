@@ -49,8 +49,8 @@ namespace PizzaBox.Testing.Tests
     [MemberData(nameof(values))]
     public void Test_StoreName(AStore store)
     {
-      Assert.NotNull(store.Name);
-      Assert.Equal(store.Name, store.ToString());
+      Assert.NotNull(store.name);
+      Assert.Equal(store.name, store.ToString());
     }
 
     /// <summary>
