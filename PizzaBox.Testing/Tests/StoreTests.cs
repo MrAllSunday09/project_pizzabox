@@ -34,7 +34,7 @@ namespace PizzaBox.Testing.Tests
     /// 
     /// </summary>
     [Fact]
-    public void Test_NewYorkStore()
+    public void Test_PizzaHut()
     {
       var sut = new PizzaHut();
 
