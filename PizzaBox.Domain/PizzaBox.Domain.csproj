@@ -1,12 +1,5 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <ItemGroup>
-    <ProjectReference Include="..\PizzaBox.Testing\PizzaBox.Testing.csproj" />
-    <ProjectReference Include="PizzaBox.Domain.csproj" />
-    <ProjectReference Include="..\PizzaBox.Client\PizzaBox.Client.csproj" />
-    <ProjectReference Include="..\PizzaBox.Storing\PizzaBox.Storing.csproj" />
-  </ItemGroup>
-
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
