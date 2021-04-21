@@ -5,10 +5,14 @@ namespace PizzaBox.Domain.Models
   public class Customer : AModel
   {
     public string Name { get; set; }
-    
-    public Customer()
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
+    public override string ToString()
     {
-      Name = "Customer";
+      return $"{Name}";
     }
   }
 }
