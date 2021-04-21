@@ -15,7 +15,7 @@ namespace PizzaBox.Storing
     private readonly IConfiguration _configuration;
 
     public DbSet<AStore> Stores { get; set; }
-    // public DbSet<APizza> Pizzas { get; set; }
+    public DbSet<APizza> Pizzas { get; set; }
     public DbSet<Customer> Customers { get; set; }
 
     /// <summary>
@@ -45,7 +45,8 @@ namespace PizzaBox.Storing
       builder.Entity<Dominos>().HasBaseType<AStore>();
       builder.Entity<PizzaHut>().HasBaseType<AStore>();
 
-      builder.Entity<APizza>().HasKey(e=> e.EntityId);
+      builder.Entity<APizza>().HasKey(e => e.EntityId);
+      builder.Entity<APizza>().HasOne<Size>();
       builder.Entity<BuildYourOwn>().HasBaseType<APizza>();
       builder.Entity<MeatLovers>().HasBaseType<APizza>();
       builder.Entity<VeggiePizza>().HasBaseType<APizza>();
