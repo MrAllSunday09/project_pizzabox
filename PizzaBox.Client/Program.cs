@@ -1,7 +1,9 @@
 ﻿using System;
 using PizzaBox.Domain.Abstracts;
 using PizzaBox.Domain.Models;
+using PizzaBox.Domain.Models.Stores;
 using PizzaBox.Client.Singletons;
+using PizzaBox.Storing;
 
 namespace PizzaBox.Client
 {
@@ -20,7 +22,7 @@ namespace PizzaBox.Client
     {
       Run();
     }
-
+    
     /// <summary>
     /// 
     /// </summary>

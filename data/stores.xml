@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfAStore xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <AStore xsi:type="Dominos">
+    <Name>Dominos</Name>
+  </AStore>
+  <AStore xsi:type="PizzaHut">
+    <Name>PizzaHut</Name>
+  </AStore>
+</ArrayOfAStore>
+© 2021 GitHub, Inc.
