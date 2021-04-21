@@ -12,6 +12,7 @@ namespace PizzaBox.Domain.Abstracts
   [XmlInclude(typeof(BuildYourOwn))]
   [XmlInclude(typeof(MeatLovers))]
   [XmlInclude(typeof(VeggiePizza))]
+
   public abstract class APizza : AModel
   {
     public Crust Crust { get; set; }
@@ -21,7 +22,7 @@ namespace PizzaBox.Domain.Abstracts
     /// <summary>
     /// 
     /// </summary>
-    protected APizza()
+    public APizza()
     {
       Factory();
     }

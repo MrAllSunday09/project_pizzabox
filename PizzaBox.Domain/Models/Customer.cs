@@ -2,9 +2,9 @@ using PizzaBox.Domain.Abstracts;
 
 namespace PizzaBox.Domain.Models
 {
-  public class Customer : AComponent
+  public class Customer : AModel
   {
-    public int Id { get; set; }
+    public string Name { get; set; }
     
     public Customer()
     {

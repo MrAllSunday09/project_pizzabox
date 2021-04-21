@@ -10,6 +10,7 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="microsoft.entityframeworkcore.sqlserver" Version="5.0.5" />
+    <PackageReference Include="microsoft.extensions.configuration.usersecrets" Version="5.0.0" />
   </ItemGroup>
 
   <PropertyGroup>
