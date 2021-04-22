@@ -22,7 +22,7 @@ namespace PizzaBox.Client
     {
       Run();
     }
-    
+
     /// <summary>
     /// 
     /// </summary>
@@ -53,7 +53,7 @@ namespace PizzaBox.Client
     {
       var index = 0;
 
-      foreach (var item in _pizzaSingleton.Pizza)
+      foreach (var item in _pizzaSingleton.Pizzas)
       {
         Console.WriteLine($"{++index} - {item}");
       }
@@ -85,7 +85,7 @@ namespace PizzaBox.Client
         return null;
       }
 
-      var pizza = _pizzaSingleton.Pizza[input - 1];
+      var pizza = _pizzaSingleton.Pizzas[input - 1];
 
       PrintOrder(pizza);
 

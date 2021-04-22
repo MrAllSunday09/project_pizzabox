@@ -17,6 +17,8 @@ namespace PizzaBox.Domain.Abstracts
   {
     public Crust Crust { get; set; }
     public Size Size { get; set; }
+
+    public long SizeEntityId { get; set; }
     public List<Toppings> Toppings { get; set; }
 
     /// <summary>
@@ -40,17 +42,17 @@ namespace PizzaBox.Domain.Abstracts
     /// <summary>
     /// 
     /// </summary>
-    protected abstract void AddCrust();
+    public abstract void AddCrust(Crust crust = null);
 
     /// <summary>
     /// 
     /// </summary>
-    protected abstract void AddSize();
+    public abstract void AddSize(Size size = null);
 
     /// <summary>
     /// 
     /// </summary>
-    protected abstract void AddToppings();
+    public abstract void AddToppings(params Toppings[] toppings);
 
     /// <summary>
     /// 

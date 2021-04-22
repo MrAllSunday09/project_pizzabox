@@ -4,6 +4,10 @@
     <Crust>
       <Name>Brooklyn</Name>
     </Crust>
+    <Size>
+      <Name>Medium</Name>
+    </Size>
+    <SizeEntityId
   </APizza>
   <APizza xsi:type="MeatLovers">
   <Crust>
