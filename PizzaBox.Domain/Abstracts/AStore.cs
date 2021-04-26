@@ -11,7 +11,7 @@ namespace PizzaBox.Domain.Abstracts
   /// </summary>
   [XmlInclude(typeof(Dominos))]
   [XmlInclude(typeof(PizzaHut))]
-  
+
   public abstract class AStore : AModel
   {
     public string Name { get; set; }

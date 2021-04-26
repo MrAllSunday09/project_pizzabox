@@ -44,6 +44,22 @@ namespace PizzaBox.Client.Singletons
       _context.SaveChanges();
 
       Pizzas = _context.Pizzas.ToList();
+
+      var cp9 = new MeatLovers();
+      cp9.Size = _context.Size.FirstOrDefault(s => s.Name == "Medium");
+
+      _context.Add(cp9);
+      _context.SaveChanges();
+
+      Pizzas = _context.Pizzas.ToList();
+
+      var cp0 = new VeggiePizza();
+      cp0.Size = _context.Size.FirstOrDefault(s => s.Name == "Medium");
+
+      _context.Add(cp0);
+      _context.SaveChanges();
+
+      Pizzas = _context.Pizzas.ToList();
     }
   }
 }

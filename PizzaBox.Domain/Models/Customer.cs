@@ -6,6 +6,8 @@ namespace PizzaBox.Domain.Models
   {
     public string Name { get; set; }
 
+    public long CustomerEntityId { get; set; }
+
     /// <summary>
     /// 
     /// </summary>

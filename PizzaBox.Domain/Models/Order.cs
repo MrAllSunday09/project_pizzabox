@@ -5,9 +5,9 @@ namespace PizzaBox.Domain.Models
 {
   public class Order : AModel
   {
-    public int Id { get; set; }
     public Customer Customer { get; set; }
     public AStore Store { get; set; }
+    public long StoreEntityId { get; set; }
     public APizza Pizza { get; set; }
     public decimal TotalCost
     {
@@ -15,6 +15,10 @@ namespace PizzaBox.Domain.Models
       {
         return Pizza.Crust.Price + Pizza.Size.Price + Pizza.Toppings.Sum(t => t.Price);
       }
+    }
+    public void Save()
+    {
+
     }
   }
 }

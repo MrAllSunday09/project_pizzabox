@@ -4,6 +4,7 @@ using PizzaBox.Domain.Models;
 using PizzaBox.Domain.Models.Stores;
 using PizzaBox.Client.Singletons;
 using PizzaBox.Storing;
+using PizzaBox.Storing.Repositories;
 
 namespace PizzaBox.Client
 {
@@ -14,6 +15,10 @@ namespace PizzaBox.Client
   {
     private static readonly PizzaSingleton _pizzaSingleton = PizzaSingleton.Instance;
     private static readonly StoreSingleton _storeSingleton = StoreSingleton.Instance;
+
+    private readonly PizzaBoxContext _context = new PizzaBoxContext();
+
+    private static readonly OrderRepo _orderRepo = new OrderRepo();
 
     /// <summary>
     /// 
@@ -36,6 +41,8 @@ namespace PizzaBox.Client
       order.Customer = new Customer();
       order.Store = SelectStore();
       order.Pizza = SelectPizza();
+
+      _orderRepo.Create(order);
     }
 
     /// <summary>

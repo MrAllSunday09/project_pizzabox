@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using PizzaBox.Domain.Abstracts;
+using PizzaBox.Domain.Models;
 using PizzaBox.Storing;
 using PizzaBox.Storing.Repositories;
 
@@ -17,30 +19,24 @@ namespace PizzaBox.Client.Singletons
     private static StoreSingleton _instance;
 
     public List<AStore> Stores { get; }
-    public static StoreSingleton Instance
-    {
-      get
-      {
-        if (_instance == null)
-        {
-          _instance = new StoreSingleton();
-        }
-
-        return _instance;
-      }
-    }
 
     /// <summary>
     /// 
     /// </summary>
     private StoreSingleton()
     {
-      if (Stores == null)
+      Stores = _fileRepository.ReadFromFile<List<AStore>>(_path);
+    }
+    public static StoreSingleton Instance
+    {
+      get
       {
-        // _context.Stores.AddRange(_fileRepository.ReadFromFile<List<AStore>>(_path));
-        _context.SaveChanges();
+        if (_instance == null)
+        {
+          return new StoreSingleton();
+        }
 
-        Stores = _context.Stores.ToList();
+        return _instance;
       }
     }
   }
