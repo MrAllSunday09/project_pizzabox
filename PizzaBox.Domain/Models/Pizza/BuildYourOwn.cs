@@ -10,16 +10,13 @@ namespace PizzaBox.Domain.Models.Pizza
   {
 
     public Size Sizes;
+    public Crust Crusts;
     /// <summary>
     /// 
     /// </summary>
     public override void AddCrust(Crust crust = null)
     {
-      Crust = new Crust() { Name = "Stuffed" };
-      Crust = new Crust() { Name = "Neapolitan" };
-      Crust = new Crust() { Name = "Original" };
-      Crust = new Crust() { Name = "Thin" };
-      Crust = new Crust() { Name = "Brooklyn" };
+      Crust = new Crust();
     }
 
     /// <summary>
@@ -27,10 +24,7 @@ namespace PizzaBox.Domain.Models.Pizza
     /// </summary>
     public override void AddSize(Size size = null)
     {
-      Size = new Size() { Name = "Small" };
-      Size = new Size() { Name = "Medium" };
-      Size = new Size() { Name = "Large" };
-      Size = new Size() { Name = "X-Large" };
+      Size = new Size();
     }
 
     /// <summary>

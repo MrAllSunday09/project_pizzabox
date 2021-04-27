@@ -17,8 +17,8 @@ namespace PizzaBox.Domain.Abstracts
   {
     public Crust Crust { get; set; }
     public Size Size { get; set; }
-
-    public long SizeEntityId { get; set; }
+    // public string Name { get; set; }
+    public long CrustEntityId { get; set; }
     public List<Toppings> Toppings { get; set; }
 
     /// <summary>
@@ -26,7 +26,7 @@ namespace PizzaBox.Domain.Abstracts
     /// </summary>
     public APizza()
     {
-      Factory();
+      // Factory();
     }
 
     /// <summary>

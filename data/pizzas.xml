@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfAPizza xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <APizza xsi:type="BuildYourOwn">
-    <Crust>
-      <Name>Brooklyn</Name>
-    </Crust>
     <Size>
       <Name>Medium</Name>
     </Size>
-    <SizeEntityId
+    <SizeEntityId>1</SizeEntityId>
   </APizza>
   <APizza xsi:type="MeatLovers">
-  <Crust>
-      <Name>Brooklyn</Name>
-    </Crust>
+    <Size>
+      <Name>Medium</Name>
+    </Size>
+    <SizeEntityId>1</SizeEntityId>
   </APizza>
   <APizza xsi:type="VeggiePizza">
-  <Crust>
-      <Name>Brooklyn</Name>
-    </Crust>
+    <Size>
+      <Name>Medium</Name>
+    </Size>
+    <SizeEntityId>1</SizeEntityId>
   </APizza>
 </ArrayOfAPizza>
