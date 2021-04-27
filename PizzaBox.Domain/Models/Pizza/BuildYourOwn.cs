@@ -8,6 +8,8 @@ namespace PizzaBox.Domain.Models.Pizza
   /// </summary>
   public class BuildYourOwn : APizza
   {
+
+    public Size Sizes;
     /// <summary>
     /// 
     /// </summary>
@@ -25,7 +27,10 @@ namespace PizzaBox.Domain.Models.Pizza
     /// </summary>
     public override void AddSize(Size size = null)
     {
-      Size = size;
+      Size = new Size() { Name = "Small" };
+      Size = new Size() { Name = "Medium" };
+      Size = new Size() { Name = "Large" };
+      Size = new Size() { Name = "X-Large" };
     }
 
     /// <summary>

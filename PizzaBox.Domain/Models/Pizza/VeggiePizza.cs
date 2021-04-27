@@ -8,6 +8,7 @@ namespace PizzaBox.Domain.Models.Pizza
   /// </summary>
   public class VeggiePizza : APizza
   {
+    public Size Sizes;
     /// <summary>
     /// 
     /// </summary>

@@ -1,10 +1,9 @@
-using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using PizzaBox.Domain.Abstracts;
 using PizzaBox.Domain.Models;
-using PizzaBox.Domain.Models.Stores;
 using PizzaBox.Domain.Models.Pizza;
+using PizzaBox.Domain.Models.Stores;
 
 namespace PizzaBox.Storing
 {
@@ -16,10 +15,10 @@ namespace PizzaBox.Storing
     private readonly IConfiguration _configuration;
 
     public DbSet<AStore> Stores { get; set; }
-    public DbSet<APizza> Pizza { get; set; }
-    public DbSet<Size> Size { get; set; }
-    public DbSet<Order> Orders { get; set; }
+    public DbSet<APizza> Pizzas { get; set; }
     public DbSet<Customer> Customers { get; set; }
+    public DbSet<Order> Orders { get; set; }
+    public DbSet<Size> Sizes { get; set; }
 
     /// <summary>
     /// 
@@ -45,13 +44,10 @@ namespace PizzaBox.Storing
     protected override void OnModelCreating(ModelBuilder builder)
     {
       builder.Entity<AStore>().HasKey(e => e.EntityId);
-      builder.Entity<AStore>().HasMany<Order>(s => s.Orders).WithOne(o => o.Store);
       builder.Entity<Dominos>().HasBaseType<AStore>();
       builder.Entity<PizzaHut>().HasBaseType<AStore>();
 
       builder.Entity<APizza>().HasKey(e => e.EntityId);
-      builder.Entity<APizza>().HasMany<Toppings>();
-      builder.Entity<APizza>().HasMany<Order>().WithMany(o => o.Pizza);
       builder.Entity<BuildYourOwn>().HasBaseType<APizza>();
       builder.Entity<MeatLovers>().HasBaseType<APizza>();
       builder.Entity<VeggiePizza>().HasBaseType<APizza>();
@@ -59,23 +55,52 @@ namespace PizzaBox.Storing
       builder.Entity<Crust>().HasKey(e => e.EntityId);
       builder.Entity<Order>().HasKey(e => e.EntityId);
       builder.Entity<Size>().HasKey(e => e.EntityId);
-      builder.Entity<Size>().HasMany<APizza>().WithOne(p => p.Size);
       builder.Entity<Toppings>().HasKey(e => e.EntityId);
 
       builder.Entity<Customer>().HasKey(e => e.EntityId);
-      builder.Entity<Customer>().HasMany<Order>().WithOne(o => o.Customer);
 
-      builder.Entity<Dominos>().HasData(new Dominos[]
+      // builder.Entity<Size>().HasMany<APizza>().WithOne(); // orm is creating the has
+      // builder.Entity<APizza>().HasOne<Size>().WithMany();
+
+      builder.Entity<AStore>().HasMany<Order>(s => s.Orders).WithOne(o => o.Store);
+      builder.Entity<Customer>().HasMany<Order>().WithOne(o => o.Customers);
+      builder.Entity<APizza>().HasMany<Order>().WithOne(o => o.Pizza);
+      builder.Entity<Order>().HasOne<AStore>(o => o.Store).WithMany(s => s.Orders);
+
+      OnDataSeeding(builder);
+    }
+
+      private void OnDataSeeding(ModelBuilder builder)
       {
-        new Dominos() { EntityId = 1, Name = "Pizza Inn" }
+        builder.Entity<Dominos>().HasData(new Dominos[]
+      {
+        new Dominos() { EntityId = 1, Name = "Chitown Main Street" }
       });
+
       builder.Entity<PizzaHut>().HasData(new PizzaHut[]
       {
-        new PizzaHut() { EntityId = 2, Name = "Marco's " }
+        new PizzaHut() { EntityId = 2, Name = "Big Apple" }
       });
+
       builder.Entity<Customer>().HasData(new Customer[]
       {
-        new Customer() { EntityId = 1, Name = "Uncle Sam" }
+        new Customer() { EntityId = 1, Name = "Uncle John" }
+      });
+      builder.Entity<Size>().HasData(new Size[]
+      {
+        new Size() { EntityId = 1, Name = "Medium" }
+      });
+      builder.Entity<BuildYourOwn>().HasData(new Size[]
+      {
+        new Size() { EntityId = 1, Name = "Medium" }
+      });
+      builder.Entity<MeatLovers>().HasData(new Size[]
+      {
+        new Size() { EntityId = 1, Name = "Medium" }
+      });
+      builder.Entity<VeggiePizza>().HasData(new Size[]
+      {
+        new Size() { EntityId = 1, Name = "Medium" }
       });
     }
   }

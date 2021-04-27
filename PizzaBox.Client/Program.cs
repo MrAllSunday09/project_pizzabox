@@ -1,10 +1,12 @@
 ﻿using System;
 using PizzaBox.Domain.Abstracts;
 using PizzaBox.Domain.Models;
-using PizzaBox.Domain.Models.Stores;
 using PizzaBox.Client.Singletons;
 using PizzaBox.Storing;
+using PizzaBox.Domain.Models.Stores;
 using PizzaBox.Storing.Repositories;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace PizzaBox.Client
 {
@@ -13,12 +15,11 @@ namespace PizzaBox.Client
   /// </summary>
   public class Program
   {
-    private static readonly PizzaSingleton _pizzaSingleton = PizzaSingleton.Instance;
-    private static readonly StoreSingleton _storeSingleton = StoreSingleton.Instance;
-
-    private readonly PizzaBoxContext _context = new PizzaBoxContext();
-
-    private static readonly OrderRepo _orderRepo = new OrderRepo();
+    private static readonly PizzaBoxContext _context = new PizzaBoxContext();
+    private static readonly CustomerSingleton _customerSingleton = CustomerSingleton.Instance(_context);
+    private static readonly PizzaSingleton _pizzaSingleton = PizzaSingleton.Instance(_context);
+    private static readonly StoreSingleton _storeSingleton = StoreSingleton.Instance(_context);
+    private static readonly OrderRepo _orderRepository = new OrderRepo(_context);
 
     /// <summary>
     /// 
@@ -35,14 +36,21 @@ namespace PizzaBox.Client
     {
       var order = new Order();
 
-      Console.WriteLine("Welcome to PizzaBox");
-      PrintStoreList();
+      Console.WriteLine("Welcome to Pizza Box");
+      Console.WriteLine("Best Pizza Ordering Service");
+      Console.WriteLine("---------------------------");
+      PrintListToScreen(_customerSingleton.Customers);
 
-      order.Customer = new Customer();
+      Console.WriteLine("Please select a Username:");
+      order.Customers = SelectCustomer();
       order.Store = SelectStore();
       order.Pizza = SelectPizza();
 
-      _orderRepo.Create(order);
+      _orderRepository.Create(order);
+
+      var orders = _context.Orders.Where(o => o.Customers.Name == order.Customers.Name);
+
+      PrintListToScreen(orders);
     }
 
     /// <summary>
@@ -77,6 +85,32 @@ namespace PizzaBox.Client
       {
         Console.WriteLine($"{++index} - {item}");
       }
+    }
+
+    private static void PrintListToScreen(IEnumerable<object> items)
+    {
+      var index = 0;
+
+      foreach (var item in items)
+      {
+        Console.WriteLine($"{++index} - {item}");
+      }
+    }
+
+    private static Customer SelectCustomer()
+    {
+      var valid = int.TryParse(Console.ReadLine(), out int input);
+
+      if (!valid)
+      {
+        return null;
+      }
+
+      var customer = _customerSingleton.Customers[input - 1];
+
+      PrintStoreList();
+
+      return customer;
     }
 
     /// <summary>
