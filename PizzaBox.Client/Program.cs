@@ -39,11 +39,13 @@ namespace PizzaBox.Client
       Console.WriteLine("Welcome to Pizza Box");
       Console.WriteLine("Best Pizza Ordering Service");
       Console.WriteLine("---------------------------");
-      PrintListToScreen(_customerSingleton.Customers);
 
+      PrintListToScreen(_customerSingleton.Customers);
       Console.WriteLine("Please select a Username:");
       order.Customers = SelectCustomer();
+      Console.WriteLine("Please select a Store:");
       order.Store = SelectStore();
+      Console.WriteLine("Please select a Pizza:");
       order.Pizza = SelectPizza();
 
       _orderRepository.Create(order);

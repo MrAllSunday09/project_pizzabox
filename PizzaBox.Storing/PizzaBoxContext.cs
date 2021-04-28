@@ -59,8 +59,7 @@ namespace PizzaBox.Storing
 
       builder.Entity<Customer>().HasKey(e => e.EntityId);
 
-      builder.Entity<Size>().HasMany<APizza>().WithOne(); // orm is creating the has
-      builder.Entity<Crust>().HasOne<Size>().WithOne();
+      // builder.Entity<Size>().HasMany<APizza>().WithOne(); // orm is creating the has
       builder.Entity<APizza>().HasMany<Toppings>().WithOne();
       builder.Entity<AStore>().HasMany<Order>(s => s.Orders).WithOne(o => o.Store);
       builder.Entity<Customer>().HasMany<Order>().WithOne(o => o.Customers);
@@ -93,14 +92,14 @@ namespace PizzaBox.Storing
         new Crust() { EntityId = 1, Name = "Thin", Price = 3 },
         new Crust() { EntityId = 2, Name = "Original", Price = 5 },
         new Crust() { EntityId = 3, Name = "Brooklyn", Price = 7 },
-        new Crust() { EntityId = 4, Name = "Stuffed", Price = 10},
+        new Crust() { EntityId = 7, Name = "Stuffed", Price = 10},
       });
       builder.Entity<Size>().HasData(new Size[]
       {
         new Size() { EntityId = 1, Name = "Small", Price = 3 },
         new Size() { EntityId = 2, Name = "Medium", Price = 5 },
         new Size() { EntityId = 3, Name = "Large", Price = 7 },
-        new Size() { EntityId = 4, Name = "X-Large", Price = 12 }
+        new Size() { EntityId = 7, Name = "X-Large", Price = 12 }
       });
       builder.Entity<Toppings>().HasData(new Toppings[]
       {
@@ -117,15 +116,15 @@ namespace PizzaBox.Storing
       });
       builder.Entity<BuildYourOwn>().HasData(new BuildYourOwn[]
       {
-        new BuildYourOwn() { EntityId = 1, CrustEntityId = 1 }
+        new BuildYourOwn() { EntityId = 1, SizeEntityId = 1, CrustEntityId = 1 }
       });
       builder.Entity<MeatLovers>().HasData(new MeatLovers[]
       {
-        new MeatLovers() { EntityId = 2, CrustEntityId = 2 }
+        new MeatLovers() { EntityId = 2, SizeEntityId = 2, CrustEntityId = 2 }
       });
       builder.Entity<VeggiePizza>().HasData(new VeggiePizza[]
       {
-        new VeggiePizza() { EntityId = 3, CrustEntityId = 3 }
+        new VeggiePizza() { EntityId = 3, SizeEntityId = 3, CrustEntityId = 3 }
       });
     }
   }
