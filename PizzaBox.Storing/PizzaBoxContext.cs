@@ -19,6 +19,8 @@ namespace PizzaBox.Storing
     public DbSet<Customer> Customers { get; set; }
     public DbSet<Order> Orders { get; set; }
     public DbSet<Size> Sizes { get; set; }
+    public DbSet<Crust> Crusts { get; set; }
+    public DbSet<Toppings> Toppings { get; set; }
 
     /// <summary>
     /// 

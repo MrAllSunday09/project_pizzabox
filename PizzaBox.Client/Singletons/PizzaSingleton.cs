@@ -35,31 +35,54 @@ namespace PizzaBox.Client.Singletons
     /// </summary>
     private PizzaSingleton(PizzaBoxContext context)
     {
-      // _context.Pizzas.AddRange(_fileRepository.ReadFromFile<List<APizza>>(_path));
-      // var cp = new BuildYourOwn();
-      // cp.Sizes = _context.Sizes.FirstOrDefault(s => s.Name == "Medium");
-
-      // _context.Add(cp);
-      // _context.SaveChanges();
-
-      // Pizzas = _context.Pizzas.ToList();
-
-      // var cp9 = new MeatLovers();
-      // cp9.Sizes = _context.Sizes.FirstOrDefault(s => s.Name == "Medium");
-
-      // _context.Add(cp9);
-      // _context.SaveChanges();
-
-      // Pizzas = _context.Pizzas.ToList();
-
-      // var cp0 = new VeggiePizza();
-      // cp0.Sizes = _context.Sizes.FirstOrDefault(s => s.Name == "Medium");
-
-      // _context.Add(cp0);
-      // _context.SaveChanges();
 
       _context = context;
       Pizzas = _context.Pizzas.ToList();
+      foreach (var pizza in Pizzas)
+      {
+        IQueryable<Size> sizes = _context.Sizes;
+        var size = sizes.Where(s => s.EntityId == pizza.SizeEntityId).ToList();
+        IQueryable<Crust> crusts = _context.Crusts;
+        var crust = crusts.Where(s => s.EntityId == pizza.SizeEntityId).ToList();
+        IQueryable<Toppings> toppings = _context.Toppings;
+        var topping = toppings.Where(s => s.EntityId == pizza.SizeEntityId).ToList();
+        foreach (var i in size)
+        {
+          pizza.Size = i;
+        }
+        foreach (var i in crust)
+        {
+          pizza.Crust = i;
+        }
+        pizza.AddToppings(topping);
+      }
     }
   }
 }
+// public Size GetSize(APizza ap)
+// {
+//   var size = from r in _context.Sizes
+//              join ro in _context.Pizzas on r.PizzaEntityId equals ro.EntityId
+//              where ro.EntityId == ap.EntityId
+//              select r;
+
+//   return size;
+// }
+// public Size GetCrust(Crust crust)
+// {
+//   var crust = from c in _context.Crusts
+//               join co in _context.Pizzas on c.PizzaEntityId equals co.EntityId
+//               where co.EntityId == p.EntityId
+//               select c;
+
+//   return crust;
+// }
+// public Size GetToppings(APizza p)
+// {
+//   var size = from r in _context.Sizes
+//              join ro in _context.Pizzas on r.PizzaEntityId equals ro.EntityId
+//              where ro.EntityId == p.EntityId
+//              select r;
+
+//   return size;
+// }

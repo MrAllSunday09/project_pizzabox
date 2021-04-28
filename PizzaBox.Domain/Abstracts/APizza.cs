@@ -17,7 +17,6 @@ namespace PizzaBox.Domain.Abstracts
   {
     public Crust Crust { get; set; }
     public Size Size { get; set; }
-    // public string Name { get; set; }
     public long SizeEntityId { get; set; }
     public long CrustEntityId { get; set; }
     public List<Toppings> Toppings { get; set; }
@@ -27,7 +26,7 @@ namespace PizzaBox.Domain.Abstracts
     /// </summary>
     public APizza()
     {
-      // Factory();
+      Factory();
     }
 
     /// <summary>
@@ -37,7 +36,7 @@ namespace PizzaBox.Domain.Abstracts
     {
       AddCrust();
       AddSize();
-      AddToppings();
+      // AddToppings();
     }
 
     /// <summary>
@@ -53,7 +52,7 @@ namespace PizzaBox.Domain.Abstracts
     /// <summary>
     /// 
     /// </summary>
-    public abstract void AddToppings(params Toppings[] toppings);
+    public abstract void AddToppings(List<Toppings> toppings);
 
     /// <summary>
     /// 
@@ -66,10 +65,10 @@ namespace PizzaBox.Domain.Abstracts
 
       foreach (var item in Toppings)
       {
-        stringBuilder.Append($"{item}{separator}");
+        stringBuilder.Append($"{item.Name}{separator}");
       }
 
-      return $"{Crust} - {Size} - {stringBuilder.ToString().TrimEnd(separator.ToCharArray())}";
+      return $"{Crust.Name} - {Size.Name} - {stringBuilder.ToString().TrimEnd(separator.ToCharArray())}";
     }
   }
 }

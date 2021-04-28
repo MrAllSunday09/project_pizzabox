@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using PizzaBox.Domain.Abstracts;
 
@@ -27,9 +28,9 @@ namespace PizzaBox.Domain.Models.Pizza
     /// <summary>
     /// 
     /// </summary>
-    public override void AddToppings(params Toppings[] toppings)
+    public override void AddToppings(List<Toppings> toppings)
     {
-      Toppings = toppings.ToList();
+      Toppings = toppings;
     }
   }
 }

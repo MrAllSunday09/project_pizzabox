@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PizzaBox.Storing;
 
 namespace PizzaBox.Storing.Migrations
 {
     [DbContext(typeof(PizzaBoxContext))]
-    partial class PizzaBoxContextModelSnapshot : ModelSnapshot
+    [Migration("20210428034046_initial migration")]
+    partial class initialmigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -83,7 +85,7 @@ namespace PizzaBox.Storing.Migrations
 
                     b.HasKey("EntityId");
 
-                    b.ToTable("Crusts");
+                    b.ToTable("Crust");
 
                     b.HasData(
                         new
@@ -181,9 +183,6 @@ namespace PizzaBox.Storing.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("PizzaEntityId")
-                        .HasColumnType("bigint");
-
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
@@ -196,28 +195,24 @@ namespace PizzaBox.Storing.Migrations
                         {
                             EntityId = 1L,
                             Name = "Small",
-                            PizzaEntityId = 0L,
                             Price = 3m
                         },
                         new
                         {
                             EntityId = 2L,
                             Name = "Medium",
-                            PizzaEntityId = 0L,
                             Price = 5m
                         },
                         new
                         {
                             EntityId = 3L,
                             Name = "Large",
-                            PizzaEntityId = 0L,
                             Price = 7m
                         },
                         new
                         {
                             EntityId = 7L,
                             Name = "X-Large",
-                            PizzaEntityId = 0L,
                             Price = 12m
                         });
                 });

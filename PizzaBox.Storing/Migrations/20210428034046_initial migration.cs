@@ -2,7 +2,7 @@
 
 namespace PizzaBox.Storing.Migrations
 {
-    public partial class updateAComponent : Migration
+    public partial class initialmigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

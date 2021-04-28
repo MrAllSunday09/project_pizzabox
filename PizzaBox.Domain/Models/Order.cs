@@ -16,9 +16,9 @@ namespace PizzaBox.Domain.Models
         return Pizza.Crust.Price + Pizza.Size.Price + Pizza.Toppings.Sum(t => t.Price);
       }
     }
-    public void Save()
+    public override string ToString()
     {
-
+      return $"{Pizza}";
     }
   }
 }

@@ -10,8 +10,8 @@ using PizzaBox.Storing;
 namespace PizzaBox.Storing.Migrations
 {
     [DbContext(typeof(PizzaBoxContext))]
-    [Migration("20210428002028_update AComponent")]
-    partial class updateAComponent
+    [Migration("20210428051022_added PizzaEntityId")]
+    partial class addedPizzaEntityId
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -183,6 +183,9 @@ namespace PizzaBox.Storing.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<long>("PizzaEntityId")
+                        .HasColumnType("bigint");
+
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
@@ -195,24 +198,28 @@ namespace PizzaBox.Storing.Migrations
                         {
                             EntityId = 1L,
                             Name = "Small",
+                            PizzaEntityId = 0L,
                             Price = 3m
                         },
                         new
                         {
                             EntityId = 2L,
                             Name = "Medium",
+                            PizzaEntityId = 0L,
                             Price = 5m
                         },
                         new
                         {
                             EntityId = 3L,
                             Name = "Large",
+                            PizzaEntityId = 0L,
                             Price = 7m
                         },
                         new
                         {
                             EntityId = 7L,
                             Name = "X-Large",
+                            PizzaEntityId = 0L,
                             Price = 12m
                         });
                 });
